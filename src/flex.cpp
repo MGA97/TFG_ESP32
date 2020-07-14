@@ -20,10 +20,15 @@ void showDataFlexes ()
 
 void showSingleDataFlex (int FLEX_PIN)
 {
+    float flexR = readDataFlex(FLEX_PIN);
+    Serial.println("Resistencia: " + String(flexR) + " ohms");
+    Serial.println("");
+}
+
+float readDataFlex(int FLEX_PIN)
+{
     int flexADC = analogRead(FLEX_PIN);
     float flexV = flexADC * (VCC/4095); //12 bits ADC
     float flexR = R_DIV * (VCC/flexV - 1.0);
-    Serial.println("V: " +String(flexV));
-    Serial.println("Resistencia: " + String(flexR) + " ohms");
-    Serial.println("");
+    return flexR;
 }
