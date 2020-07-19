@@ -12,5 +12,7 @@ extern const float BEND_RES;
 void showDataFlexes();
 void showSingleDataFlex(int FLEX_PIN);
 float readDataFlex(int FLEX_PIN);
+void getDataFlex (flexibles_t *sflex);
+
 
 #endif // FLEX_H_INCLUDED

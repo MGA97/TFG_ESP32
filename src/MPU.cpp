@@ -43,3 +43,8 @@ void dataMPU (MPU9250 *IMU)
     //Serial.println(IMU->getTemperature_C(),6);
     delay(5000);
 }
+
+//void getDataMPU (acelerometro_t acel)
+//{
+//
+//}

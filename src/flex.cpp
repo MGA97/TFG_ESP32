@@ -2,8 +2,11 @@
 
 #include "flex.h"
 
-const int FLEX_PIN1 = 34;
-const int FLEX_PIN2 = 35;
+#define FLEX_PIN1 39
+#define FLEX_PIN2 34
+#define FLEX_PIN2 35
+#define FLEX_PIN2 32
+#define FLEX_PIN2 33
 
 const float VCC = 3.33;
 const float R_DIV = 40000; //37k input ADC
@@ -25,10 +28,19 @@ void showSingleDataFlex (int FLEX_PIN)
     Serial.println("");
 }
 
-float readDataFlex(int FLEX_PIN)
+float readSingleDataFlex(int FLEX_PIN)
 {
     int flexADC = analogRead(FLEX_PIN);
     float flexV = flexADC * (VCC/4095); //12 bits ADC
     float flexR = R_DIV * (VCC/flexV - 1.0);
     return flexR;
 }
+
+void getDataFlex (flexibles_t *sflex)
+{
+    float fpin[5] = {FLEX_PIN1,FLEX_PIN2,FLEX_PIN3,FLEX_PIN4,FLEX_PIN5};
+
+    for (int i = 0; i < sizeof(fpin); i++)
+    sflex.dedos[i] = readSingleDataFlex(fpin[i]);
+}
+

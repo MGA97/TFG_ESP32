@@ -17,6 +17,8 @@ MPU9250 IMU(Wire,0x68);
 bool statusMPU;
 
 
+guante_t guante1;
+
 void setup()
 {
     Serial.begin(115200);

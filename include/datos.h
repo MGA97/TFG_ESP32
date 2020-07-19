@@ -2,15 +2,11 @@
 #define DATOS_H_INCLUDED
 
 
-struct dedos //estructura para guardar los valores de los 5 sensores flexibles
+struct flexibles //estructura para guardar los valores de los 5 sensores flexibles
 {
-        float dedo1; //pulgar
-        float dedo2; //indice
-        //float dedo3; //corazon
-        //float dedo4; //anular
-        //float dedo5; //meñique
-} ;
-
+    float dedos[5];
+};
+typedef flexibles flexibles_t;
 
 struct acelerometro
 {
@@ -25,6 +21,14 @@ struct acelerometro
     float magX;
     float magY;
     float magZ;
-} ;
+};
+typedef acelerometro acelerometro_t;
+
+struct guante
+{
+    flexibles_t sflex;
+    acelerometro_t acel;
+};
+typedef guante guante_t;
 
 #endif // DATOS_H_INCLUDED
