@@ -1,12 +1,13 @@
 #include "Arduino.h"
 
 #include "flex.h"
+#include "datos.h"
 
-#define FLEX_PIN1 39
-#define FLEX_PIN2 34
-#define FLEX_PIN2 35
-#define FLEX_PIN2 32
-#define FLEX_PIN2 33
+const int FLEX_PIN1 = 39;
+const int FLEX_PIN2 = 34;
+const int FLEX_PIN3 = 35;
+const int FLEX_PIN4 = 32;
+const int FLEX_PIN5 = 33;
 
 const float VCC = 3.33;
 const float R_DIV = 40000; //37k input ADC
@@ -23,7 +24,7 @@ void showDataFlexes ()
 
 void showSingleDataFlex (int FLEX_PIN)
 {
-    float flexR = readDataFlex(FLEX_PIN);
+    float flexR = readSingleDataFlex(FLEX_PIN);
     Serial.println("Resistencia: " + String(flexR) + " ohms");
     Serial.println("");
 }
@@ -41,6 +42,5 @@ void getDataFlex (flexibles_t *sflex)
     float fpin[5] = {FLEX_PIN1,FLEX_PIN2,FLEX_PIN3,FLEX_PIN4,FLEX_PIN5};
 
     for (int i = 0; i < sizeof(fpin); i++)
-    sflex.dedos[i] = readSingleDataFlex(fpin[i]);
+    sflex->dedos[i] = readSingleDataFlex(fpin[i]);
 }
-

@@ -12,7 +12,7 @@ struct acelerometro
 {
     float accX;
     float accY;
-    float accX;
+    float accZ;
 
     float gyroX;
     float gyroY;
