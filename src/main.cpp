@@ -19,6 +19,8 @@ bool statusMPU;
 
 
 guante_t guante1;
+acelerometro_t acel;
+flexibles_t sflex;
 
 void setup()
 {
@@ -46,8 +48,12 @@ void setup()
 void loop()
 {
     //acelerometro
-    dataMPU(&IMU);
+    //dataMPU(&IMU);
+    getDataMPU(&acel,&IMU);
+    showDataStructMPU(&acel);
 
     //flex sensor
-    showDataFlexes();
+    //showDataFlexes();
+    getDataFlex(&sflex);
+    showDataStructFlex(&sflex);
 }

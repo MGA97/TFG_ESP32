@@ -44,3 +44,9 @@ void getDataFlex (flexibles_t *sflex)
     for (int i = 0; i < sizeof(fpin); i++)
     sflex->dedos[i] = readSingleDataFlex(fpin[i]);
 }
+
+void showDataStructFlex (flexibles_t *sflex)
+{
+    Serial.println(sflex->dedos[0]);
+    delay(1000);
+}

@@ -3,6 +3,7 @@
 
 #include "datos.h"
 
+
 extern const int FLEX_PIN1;
 extern const int FLEX_PIN2;
 extern const int FLEX_PIN3;
@@ -18,6 +19,6 @@ void showDataFlexes();
 void showSingleDataFlex(int FLEX_PIN);
 float readSingleDataFlex(int FLEX_PIN);
 void getDataFlex (flexibles_t *sflex);
-
+void showDataStructFlex (flexibles_t *sflex);
 
 #endif // FLEX_H_INCLUDED

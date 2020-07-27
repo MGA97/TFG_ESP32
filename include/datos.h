@@ -2,7 +2,7 @@
 #define DATOS_H_INCLUDED
 
 
-struct flexibles //estructura para guardar los valores de los 5 sensores flexibles
+struct flexibles
 {
     float dedos[5];
 };
