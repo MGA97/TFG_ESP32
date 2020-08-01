@@ -41,7 +41,7 @@ void getDataFlex (flexibles_t *sflex)
 {
     float fpin[5] = {FLEX_PIN1,FLEX_PIN2,FLEX_PIN3,FLEX_PIN4,FLEX_PIN5};
 
-    for (int i = 0; i < sizeof(fpin); i++)
+    for (int i = 0; i < (sizeof(fpin)/sizeof(fpin[0])); i++)
     sflex->dedos[i] = readSingleDataFlex(fpin[i]);
 }
 
