@@ -1,0 +1,11 @@
+eclipse.preferences.version=1
+environment/project/0.910961921/PATH/delimiter=\:
+environment/project/0.910961921/PATH/operation=replace
+environment/project/0.910961921/PATH/value=/home/malory/esp/esp-idf/components/esptool_py/esptool\:/home/malory/esp/esp-idf/components/espcoredump\:/home/malory/esp/esp-idf/components/partition_table/\:/home/malory/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin\:/home/malory/.espressif/tools/xtensa-esp32s2-elf/esp-2019r2-8.2.0/xtensa-esp32s2-elf/bin\:/home/malory/.espressif/tools/esp32ulp-elf/2.28.51-esp-20191205/esp32ulp-elf-binutils/bin\:/home/malory/.espressif/tools/esp32s2ulp-elf/2.28.51-esp-20191205/esp32s2ulp-elf-binutils/bin\:/home/malory/.espressif/tools/openocd-esp32/v0.10.0-esp32-20200309/openocd-esp32/bin\:/home/malory/esp/esp-idf/tools\:/home/malory/.local/bin\:/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/usr/games\:/usr/local/games\:/snap/bin${PathDelimiter}${PATH}
+environment/project/0.910961921/append=true
+environment/project/0.910961921/appendContributed=true
+environment/project/0.910961921.1363900502/PATH/delimiter=\:
+environment/project/0.910961921.1363900502/PATH/operation=replace
+environment/project/0.910961921.1363900502/PATH/value=/home/malory/esp/esp-idf/components/esptool_py/esptool\:/home/malory/esp/esp-idf/components/espcoredump\:/home/malory/esp/esp-idf/components/partition_table/\:/home/malory/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin\:/home/malory/.espressif/tools/xtensa-esp32s2-elf/esp-2019r2-8.2.0/xtensa-esp32s2-elf/bin\:/home/malory/.espressif/tools/esp32ulp-elf/2.28.51-esp-20191205/esp32ulp-elf-binutils/bin\:/home/malory/.espressif/tools/esp32s2ulp-elf/2.28.51-esp-20191205/esp32s2ulp-elf-binutils/bin\:/home/malory/.espressif/tools/openocd-esp32/v0.10.0-esp32-20200309/openocd-esp32/bin\:/home/malory/esp/esp-idf/tools\:/home/malory/.local/bin\:/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/usr/games\:/usr/local/games\:/snap/bin${PathDelimiter}${PATH}
+environment/project/0.910961921.1363900502/append=true
+environment/project/0.910961921.1363900502/appendContributed=true
