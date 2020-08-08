@@ -48,5 +48,10 @@ void getDataFlex (flexibles_t *sflex)
 void showDataStructFlex (flexibles_t *sflex)
 {
     Serial.println(sflex->dedos[0]);
+    Serial.println(sflex->dedos[1]);
+//    Serial.println(sflex->dedos[0]);
+//    Serial.println(sflex->dedos[0]);
+//    Serial.println(sflex->dedos[0]);
+
     delay(1000);
 }

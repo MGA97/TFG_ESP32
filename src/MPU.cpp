@@ -44,8 +44,9 @@ void dataMPU (MPU9250 *IMU)
     delay(5000);
 }
 
-void getDataMPU (acelerometro_t *acel, MPU9250 *IMU)
+void getDataMPU (acelerometro_t *acel)
 {
+	MPU9250 *IMU = acel->IMU;
     IMU->readSensor();
     //acel
     acel->accX = IMU->getAccelX_mss();
@@ -67,5 +68,16 @@ void getDataMPU (acelerometro_t *acel, MPU9250 *IMU)
 void showDataStructMPU(acelerometro_t *acel)
 {
     Serial.println(acel->accX,6);
+    Serial.println(acel->accY,6);
+    Serial.println(acel->accZ,6);
+
+    Serial.println(acel->gyroX,6);
+    Serial.println(acel->gyroY,6);
+    Serial.println(acel->gyroZ,6);
+
+    Serial.println(acel->magX,6);
+    Serial.println(acel->magY,6);
+    Serial.println(acel->magZ,6);
+
     delay(1000);
 }

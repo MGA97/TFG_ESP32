@@ -5,6 +5,7 @@
 #include "MPU.h"
 #include "flex.h"
 #include "datos.h"
+#include "glove.h"
 
 
 //WiFi
@@ -19,8 +20,8 @@ bool statusMPU;
 
 
 guante_t guante1;
-acelerometro_t acel;
-flexibles_t sflex;
+acelerometro_t *acel = &guante1.acel;
+flexibles_t *sflex = &guante1.sflex;
 
 void setup()
 {
@@ -39,6 +40,8 @@ void setup()
         Serial.println("IMU initialization unsuccessful");
         exit(1);
     }
+    acel->IMU = &IMU;
+
     //flex sensor
     pinMode(FLEX_PIN1, INPUT);
     pinMode(FLEX_PIN2, INPUT);
@@ -49,11 +52,13 @@ void loop()
 {
     //acelerometro
     //dataMPU(&IMU);
-    getDataMPU(&acel,&IMU);
-    showDataStructMPU(&acel);
+    getDataMPU(acel);
+    //showDataStructMPU(acel);
 
     //flex sensor
     //showDataFlexes();
-    getDataFlex(&sflex);
-    showDataStructFlex(&sflex);
+    getDataFlex(sflex);
+    //showDataStructFlex(sflex);
+
+    showDataGlove(&guante1);
 }

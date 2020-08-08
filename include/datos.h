@@ -1,6 +1,8 @@
 #ifndef DATOS_H_INCLUDED
 #define DATOS_H_INCLUDED
 
+#include "MPU9250.h"
+
 
 struct flexibles
 {
@@ -21,6 +23,8 @@ struct acelerometro
     float magX;
     float magY;
     float magZ;
+
+    MPU9250 *IMU;
 };
 typedef acelerometro acelerometro_t;
 
