@@ -1,5 +1,6 @@
 #include "ESP32Ping.h"
 #include "MPU9250.h"
+#include "WiFi.h"
 
 #include "wifi.h"
 #include "MPU.h"
@@ -14,7 +15,12 @@ IPAddress subnet(172,16,0,0);
 IPAddress esp(172,16,0,200);
 IPAddress rpi(172,16,0,100);
 
-// Acelerometro probar con los 2
+
+//cliente
+bool statusWifiClient;
+//uint16_t port = 2023;
+
+// Acelerometro
 MPU9250 IMU(Wire,0x68);
 bool statusMPU;
 
@@ -22,6 +28,8 @@ bool statusMPU;
 guante_t guante1;
 acelerometro_t *acel = &guante1.acel;
 flexibles_t *sflex = &guante1.sflex;
+
+WiFiClient client;
 
 void setup()
 {
@@ -33,6 +41,13 @@ void setup()
         Serial.println("Connection error");
         exit(1);
     }
+
+//    // wifi client
+//    statusWifiClient = wifiClientConnect(client, rpi, 2320);
+//    if (!statusWifiClient){
+//    	Serial.println("Client connection error");
+//    	exit(1);
+//    }
 
     // acelerometro
     statusMPU = initMPU(&IMU);
@@ -50,6 +65,7 @@ void setup()
 
 void loop()
 {
+	Serial.println(statusWifiClient);
     //acelerometro
     //dataMPU(&IMU);
     getDataMPU(acel);
@@ -60,5 +76,8 @@ void loop()
     getDataFlex(sflex);
     //showDataStructFlex(sflex);
 
-    showDataGlove(&guante1);
+    //showDataGlove(&guante1);
+
+    client.write("hola");
+
 }
