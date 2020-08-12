@@ -29,6 +29,8 @@ guante_t guante1;
 acelerometro_t *acel = &guante1.acel;
 flexibles_t *sflex = &guante1.sflex;
 
+char txbuffer[sizeof(guante_t)];
+
 WiFiClient client;
 
 void setup()
@@ -42,12 +44,7 @@ void setup()
         exit(1);
     }
 
-//    // wifi client
-//    statusWifiClient = wifiClientConnect(client, rpi, 2320);
-//    if (!statusWifiClient){
-//    	Serial.println("Client connection error");
-//    	exit(1);
-//    }
+
 
     // acelerometro
     statusMPU = initMPU(&IMU);
@@ -65,19 +62,24 @@ void setup()
 
 void loop()
 {
-	Serial.println(statusWifiClient);
     //acelerometro
     //dataMPU(&IMU);
     getDataMPU(acel);
-    //showDataStructMPU(acel);
+    showDataStructMPU(acel);
 
     //flex sensor
     //showDataFlexes();
     getDataFlex(sflex);
-    //showDataStructFlex(sflex);
+    showDataStructFlex(sflex);
 
     //showDataGlove(&guante1);
 
+
+    memcpy(&txbuffer, &guante1, sizeof(guante1));
+    client.connect(rpi, 2320);
     client.write("hola");
+    //client.write(txbuffer,sizeof(txbuffer));
+    //client.write((byte*)&guante1, sizeof(guante1));
+    client.stop();
 
 }
