@@ -31,7 +31,8 @@ flexibles_t *sflex = &guante1.sflex;
 
 char txbuffer[sizeof(guante_t)];
 
-WiFiClient client;
+const char * host = "172.16.0.100";
+const uint16_t port = 2320;
 
 void setup()
 {
@@ -73,13 +74,23 @@ void loop()
     showDataStructFlex(sflex);
 
     //showDataGlove(&guante1);
-
-
     memcpy(&txbuffer, &guante1, sizeof(guante1));
-    client.connect(rpi, 2320);
-    client.write("hola");
-    //client.write(txbuffer,sizeof(txbuffer));
+
+    WiFiClient client;
+
+    if(!client.connect(host, port)) {
+    	Serial.println("Connection to server failed");
+    	delay(1000);
+    	return;
+    }
+    Serial.println("Connected to server");
+    //client.println("hola");
+    client.write(txbuffer,sizeof(txbuffer));
     //client.write((byte*)&guante1, sizeof(guante1));
+    Serial.println("Disconnecting...");
+
     client.stop();
+
+    delay(2000);
 
 }

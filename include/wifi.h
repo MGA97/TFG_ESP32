@@ -3,7 +3,7 @@
 #define SETUP_H_INCLUDED
 
 //WIFI
-#define SSID "PiNetMal"
+#define SSID (char*)"PiNetMal"
 
 bool wifiConnect(IPAddress esp, IPAddress rpi, IPAddress subnet);
 
