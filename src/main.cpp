@@ -45,7 +45,7 @@ void setup()
         exit(1);
     }
 
-
+    memset(&guante1, 0, sizeof(guante1));
 
     // acelerometro
     statusMPU = initMPU(&IMU);
@@ -58,6 +58,7 @@ void setup()
     //flex sensor
     pinMode(FLEX_PIN1, INPUT);
     pinMode(FLEX_PIN2, INPUT);
+
 
 }
 
@@ -74,17 +75,16 @@ void loop()
     showDataStructFlex(sflex);
 
     //showDataGlove(&guante1);
-    memcpy(&txbuffer, &guante1, sizeof(guante1));
+    memcpy(txbuffer, &guante1, sizeof(txbuffer));
 
     WiFiClient client;
-
     if(!client.connect(host, port)) {
     	Serial.println("Connection to server failed");
     	delay(1000);
     	return;
     }
     Serial.println("Connected to server");
-    //client.println("hola");
+
     client.write(txbuffer,sizeof(txbuffer));
     //client.write((byte*)&guante1, sizeof(guante1));
     Serial.println("Disconnecting...");
