@@ -12,8 +12,6 @@ void showDataFlexes ()
 {
     showSingleDataFlex(FLEX_PIN1);
     showSingleDataFlex(FLEX_PIN2);
-
-    delay(1000);
 }
 
 void showSingleDataFlex (int FLEX_PIN)
@@ -25,7 +23,8 @@ void showSingleDataFlex (int FLEX_PIN)
 
 float readSingleDataFlex(int FLEX_PIN)
 {
-    int flexADC = analogRead(FLEX_PIN);
+	analogReadResolution(12); //cambiar resolucion de analogRead a 12 bits
+    int flexADC = analogRead(FLEX_PIN); //analogRead tiene 10 bits por defecto de resolucion
     float flexV = flexADC * (VCC/4095); //12 bits ADC
     float flexR = R_DIV * (VCC/flexV - 1.0);
     return flexR;
@@ -46,6 +45,4 @@ void showDataStructFlex (flexibles_t *sflex)
     Serial.println(sflex->dedos[2]);
     Serial.println(sflex->dedos[3]);
     Serial.println(sflex->dedos[4]);
-
-    delay(1000);
 }

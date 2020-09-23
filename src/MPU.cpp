@@ -16,7 +16,6 @@ bool initMPU (MPU9250 *IMU)
     }
     Serial.println("IMU initialization successful");
     return true;
-
 }
 
 void dataMPU (MPU9250 *IMU)
@@ -40,8 +39,6 @@ void dataMPU (MPU9250 *IMU)
     Serial.println(IMU->getMagY_uT(),6);
     Serial.println(IMU->getMagZ_uT(),6);
     Serial.println("");
-    //Serial.println(IMU->getTemperature_C(),6);
-    delay(5000);
 }
 
 void getDataMPU (acelerometro_t *acel)
@@ -62,7 +59,6 @@ void getDataMPU (acelerometro_t *acel)
     acel->magX = IMU->getMagX_uT();
     acel->magY = IMU->getMagY_uT();
     acel->magZ = IMU->getMagZ_uT();
-
 }
 
 void showDataStructMPU(acelerometro_t *acel)
@@ -78,6 +74,4 @@ void showDataStructMPU(acelerometro_t *acel)
     Serial.println(acel->magX,6);
     Serial.println(acel->magY,6);
     Serial.println(acel->magZ,6);
-
-    delay(1000);
 }
