@@ -1,4 +1,3 @@
-#include "ESP32Ping.h"
 #include "MPU9250.h"
 #include "WiFi.h"
 
@@ -10,87 +9,78 @@
 
 
 //WiFi
-bool statusWifi;
+bool statusWifi; //comprobacion wifiConnect
 IPAddress subnet(172,16,0,0);
 IPAddress esp(172,16,0,200);
 IPAddress rpi(172,16,0,100);
-
-
-//cliente
-bool statusWifiClient;
-//uint16_t port = 2023;
+const int port = 2320; //puerto servidor
 
 // Acelerometro
 MPU9250 IMU(Wire,0x68);
-bool statusMPU;
+bool statusMPU; //comprobacion initMPU
 
-
+//estructuras
 guante_t guante1;
 acelerometro_t *acel = &guante1.acel;
 flexibles_t *sflex = &guante1.sflex;
 
-char txbuffer[sizeof(guante_t)];
+char txbuffer[sizeof(guante_t)]; //buffer para almacenar estructura guante1
 
-const char * host = "172.16.0.100";
-const uint16_t port = 2320;
+
 
 void setup()
 {
     Serial.begin(115200);
 
-    // wifi
+    // WIFI
     statusWifi = wifiConnect(esp, rpi, subnet);
     if (!statusWifi) {
         Serial.println("Connection error");
         exit(1);
     }
 
-    memset(&guante1, 0, sizeof(guante1));
+    memset(&guante1, 0, sizeof(guante1)); //preparar espacio de memoria para estructura guante
 
-    // acelerometro
+    // ACELEROMETRO
     statusMPU = initMPU(&IMU);
     if (!statusMPU) {
         Serial.println("IMU initialization unsuccessful");
         exit(1);
     }
-    acel->IMU = &IMU;
+    acel->IMU = &IMU; //meter objeto IMU en la estructura
 
-    //flex sensor
+    // SENSOR FLEXIBLE
     pinMode(FLEX_PIN1, INPUT);
     pinMode(FLEX_PIN2, INPUT);
-
-
+    pinMode(FLEX_PIN3, INPUT);
+    pinMode(FLEX_PIN4, INPUT);
+    pinMode(FLEX_PIN5, INPUT);
 }
 
 void loop()
 {
-    //acelerometro
-    //dataMPU(&IMU);
+    //ACELEROMETRO
     getDataMPU(acel);
     showDataStructMPU(acel);
 
-    //flex sensor
-    //showDataFlexes();
+    //SENSOR FLEXIBLE
     getDataFlex(sflex);
     showDataStructFlex(sflex);
 
-    //showDataGlove(&guante1);
-    memcpy(txbuffer, &guante1, sizeof(txbuffer));
+    memcpy(txbuffer, &guante1, sizeof(txbuffer)); //copiar estructura guante1 a buffer memoria
 
     WiFiClient client;
-    if(!client.connect(host, port)) {
+    if(!client.connect(rpi, port)) {
     	Serial.println("Connection to server failed");
     	delay(1000);
     	return;
     }
     Serial.println("Connected to server");
-
-    client.write(txbuffer,sizeof(txbuffer));
+    client.write(txbuffer, sizeof(txbuffer));
     //client.write((byte*)&guante1, sizeof(guante1));
     Serial.println("Disconnecting...");
 
     client.stop();
 
     delay(2000);
-
 }

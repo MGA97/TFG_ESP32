@@ -3,12 +3,6 @@
 #include "flex.h"
 #include "datos.h"
 
-const int FLEX_PIN1 = 39;
-const int FLEX_PIN2 = 34;
-const int FLEX_PIN3 = 35;
-const int FLEX_PIN4 = 32;
-const int FLEX_PIN5 = 33;
-
 const float VCC = 3.33;
 const float R_DIV = 40000; //37k input ADC
 const float STRAIGHT_RES = 29000.0;
@@ -49,9 +43,9 @@ void showDataStructFlex (flexibles_t *sflex)
 {
     Serial.println(sflex->dedos[0]);
     Serial.println(sflex->dedos[1]);
-//    Serial.println(sflex->dedos[0]);
-//    Serial.println(sflex->dedos[0]);
-//    Serial.println(sflex->dedos[0]);
+    Serial.println(sflex->dedos[2]);
+    Serial.println(sflex->dedos[3]);
+    Serial.println(sflex->dedos[4]);
 
     delay(1000);
 }

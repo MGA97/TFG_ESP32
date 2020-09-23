@@ -4,16 +4,11 @@
 #include "datos.h"
 
 
-extern const int FLEX_PIN1;
-extern const int FLEX_PIN2;
-extern const int FLEX_PIN3;
-extern const int FLEX_PIN4;
-extern const int FLEX_PIN5;
-
-extern const float VCC;
-extern const float R_DIV;
-extern const float STRAIGHT_RES;
-extern const float BEND_RES;
+#define FLEX_PIN1 39
+#define FLEX_PIN2 34
+#define FLEX_PIN3 35
+#define FLEX_PIN4 32
+#define FLEX_PIN5 33
 
 void showDataFlexes();
 void showSingleDataFlex(int FLEX_PIN);
