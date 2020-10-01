@@ -24,15 +24,19 @@ guante_t guante1;
 acelerometro_t *acel = &guante1.acel;
 flexibles_t *sflex = &guante1.sflex;
 
-char txbuffer[sizeof(guante_t)]; //buffer para almacenar estructura guante1
+// Sensor flexible
+extern float sflexCalLow[5];
+extern float sflexCalHigh[5];
 
+
+char txbuffer[sizeof(guante_t)]; //buffer para almacenar estructura guante1
 
 
 void setup()
 {
     Serial.begin(115200);
 
-    // WIFI
+//____________________ CONEXION WIFI
     statusWifi = wifiConnect(esp, rpi, subnet);
     if (!statusWifi) {
         Serial.println("Connection error");
@@ -41,7 +45,7 @@ void setup()
 
     memset(&guante1, 0, sizeof(guante1)); //preparar espacio de memoria para estructura guante
 
-    // ACELEROMETRO
+//____________________ INICIALIZACION ACELEROMETRO
     statusMPU = initMPU(&IMU);
     if (!statusMPU) {
         Serial.println("IMU initialization unsuccessful");
@@ -49,12 +53,42 @@ void setup()
     }
     acel->IMU = &IMU; //meter objeto IMU en la estructura
 
-    // SENSOR FLEXIBLE
+//____________________ SENSOR FLEXIBLE
     pinMode(FLEX_PIN1, INPUT);
     pinMode(FLEX_PIN2, INPUT);
     pinMode(FLEX_PIN3, INPUT);
     pinMode(FLEX_PIN4, INPUT);
     pinMode(FLEX_PIN5, INPUT);
+
+//____________________ CALIBRACION SENSOR FLEXIBLE_______________
+
+    //MANO ABIERTA
+    Serial.println("Modo calibración mano abierta");
+    delay(2000);
+    int cont1 = 10;
+    for (int i=0; i < 10; i++) {
+    	calibrationFlex(sflexCalLow);
+    	Serial.println(cont1--);
+    	delay(1000);
+    }
+	for (int i = 0; i < 5; i++) {
+		sflexCalLow[i] = sflexCalLow[i] /10;
+	}
+
+	delay(2000);
+
+    //MANO CERRADA
+    Serial.println("Modo calibración mano cerrada");
+    delay(2000);
+    int cont2 = 10;
+    for (int i=0; i < 10; i++) {
+      	calibrationFlex(sflexCalHigh);
+       	Serial.println(cont2--);
+       	delay(1000);
+    }
+	for (int i = 0; i < 5; i++) {
+		sflexCalHigh[i] = sflexCalHigh[i] /10;
+	}
 }
 
 void loop()
@@ -69,6 +103,7 @@ void loop()
 
     memcpy(txbuffer, &guante1, sizeof(txbuffer)); //copiar estructura guante1 a buffer memoria
 
+    // CLIENTE TCP
     WiFiClient client;
     if(!client.connect(rpi, port)) {
     	Serial.println("Connection to server failed");
