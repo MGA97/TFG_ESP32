@@ -51,9 +51,24 @@ void showDataStructFlex (flexibles_t *sflex)
 	}
 }
 
-void calibrationFlex (float *sflexCal)
+void setCalibrationFlex (float *sflexCal)
 {
 	for (int i = 0; i < (sizeof(fpin)/sizeof(fpin[0])); i++){
 		sflexCal[i] += readSingleDataFlex(fpin[i]);
 	}
+}
+
+void calibrationFlex (float *sflexCal)
+{
+    int cont1 = 10;
+    for (int i=0; i < 10; i++) {
+    	setCalibrationFlex(sflexCal);
+    	Serial.println(cont1--);
+    	delay(1000);
+    }
+	for (int i = 0; i < 5; i++) {
+		sflexCal[i] = sflexCal[i] /10;
+		Serial.println(sflexCal[i]);
+	}
+
 }

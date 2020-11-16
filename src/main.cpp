@@ -63,32 +63,17 @@ void setup()
 //____________________ CALIBRACION SENSOR FLEXIBLE_______________
 
     //MANO ABIERTA
-    Serial.println("Modo calibración mano abierta");
+    Serial.println("Modo calibracion mano abierta");
     delay(2000);
-    int cont1 = 10;
-    for (int i=0; i < 10; i++) {
-    	calibrationFlex(sflexCalLow);
-    	Serial.println(cont1--);
-    	delay(1000);
-    }
-	for (int i = 0; i < 5; i++) {
-		sflexCalLow[i] = sflexCalLow[i] /10;
-	}
+    calibrationFlex(sflexCalLow);
 
 	delay(2000);
 
     //MANO CERRADA
-    Serial.println("Modo calibración mano cerrada");
+    Serial.println("Modo calibracion mano cerrada");
     delay(2000);
-    int cont2 = 10;
-    for (int i=0; i < 10; i++) {
-      	calibrationFlex(sflexCalHigh);
-       	Serial.println(cont2--);
-       	delay(1000);
-    }
-	for (int i = 0; i < 5; i++) {
-		sflexCalHigh[i] = sflexCalHigh[i] /10;
-	}
+    calibrationFlex(sflexCalHigh);
+
 }
 
 void loop()
@@ -117,5 +102,5 @@ void loop()
 
     client.stop();
 
-    delay(2000);
+    delay(50);
 }
