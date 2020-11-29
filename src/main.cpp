@@ -102,5 +102,5 @@ void loop()
 
     client.stop();
 
-    delay(50);
+    delay(500);
 }
